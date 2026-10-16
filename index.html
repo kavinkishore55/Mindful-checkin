@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176b66">
+<title>Mindful Check-In | Mental Wellness</title>
+<style>
+:root{--ink:#18333a;--muted:#60767b;--teal:#176b66;--mint:#e5f5ef;--paper:#f7faf9;--line:#dce9e5;--white:#fff;--amber:#fff3d8;--rose:#fff0ef}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#edf8f4,#f7faf9 55%,#eef5ff);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);line-height:1.55}
+.wrap{max-width:850px;margin:0 auto;padding:24px 16px 48px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px;color:var(--teal)}.brandmark{width:40px;height:40px;border-radius:14px;background:var(--teal);color:white;display:grid;place-items:center;font-size:22px}
+.hero{padding:36px 0 22px}.eyebrow{text-transform:uppercase;font-size:.76rem;letter-spacing:1.6px;font-weight:800;color:var(--teal)}h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.06;letter-spacing:-1.7px;margin:10px 0 14px}.hero p{font-size:1.08rem;max-width:640px;color:var(--muted);margin:0}
+.notice{padding:14px 16px;border:1px solid #d6e9e3;border-radius:16px;background:#f4fbf8;color:#315b58;font-size:.92rem;margin:16px 0 22px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,4vw,30px);box-shadow:0 12px 34px rgba(27,73,70,.06);margin:18px 0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.small{font-size:.88rem;color:var(--muted)}.progress{height:8px;background:#e8f0ed;border-radius:99px;overflow:hidden;margin:12px 0 26px}.bar{height:100%;width:0;background:var(--teal);transition:width .2s}
+h2{font-size:1.45rem;line-height:1.25;margin:0 0 8px}h3{margin:0 0 8px;font-size:1.05rem}.question{font-size:1.23rem;font-weight:750;margin:8px 0 18px}.answers{display:grid;gap:10px}.answer{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:1.5px solid var(--line);border-radius:14px;background:white;padding:13px 15px;color:var(--ink);font:inherit;cursor:pointer;transition:.15s}.answer:hover{border-color:#70aaa0;background:#f8fcfa}.answer.selected{border-color:var(--teal);background:var(--mint);font-weight:700}.dot{width:20px;height:20px;border:1.5px solid #9bb4ae;border-radius:50%;flex:none;display:grid;place-items:center}.selected .dot{border:6px solid var(--teal)}
+.actions{display:flex;gap:10px;justify-content:space-between;margin-top:24px;flex-wrap:wrap}button.primary,button.secondary{border:0;border-radius:12px;padding:12px 18px;font:inherit;font-weight:750;cursor:pointer}.primary{background:var(--teal);color:white}.primary:disabled{opacity:.4;cursor:not-allowed}.secondary{background:#edf4f1;color:var(--ink)}button:focus-visible{outline:3px solid #f2b84b;outline-offset:3px}
+.hidden{display:none!important}.pill{display:inline-block;border-radius:999px;background:var(--mint);color:var(--teal);padding:5px 10px;font-size:.78rem;font-weight:800}.result-score{font-size:3rem;font-weight:850;letter-spacing:-2px;line-height:1.1;margin:10px 0}.result-panel{padding:18px;border-radius:16px;background:#f2faf6;border:1px solid var(--line);margin:16px 0}.result-panel.amber{background:var(--amber)}.result-panel.rose{background:var(--rose)}ul{padding-left:22px}li{margin:7px 0}.footer{color:var(--muted);font-size:.84rem;text-align:center;padding:20px 8px}.footer a{color:var(--teal)}.safety{border-left:4px solid #d29a28;padding:12px 14px;background:#fff8e8;border-radius:8px;margin-top:16px;font-size:.9rem}
+@media(min-width:650px){.answers{grid-template-columns:1fr 1fr}.answer:last-child:nth-child(odd){grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="brandmark" aria-hidden="true">✦</div><span>MINDFUL CHECK-IN</span></div>
+  <header class="hero">
+    <div class="eyebrow">Pause · Notice · Take a step</div>
+    <h1>How have you<br>really been feeling?</h1>
+    <p>A gentle, private check-in to help you reflect on mood, stress, sleep and support. There are no right or wrong answers.</p>
+  </header>
+  <div class="notice"><strong>A quick note:</strong> This is a general wellness reflection tool, not a validated clinical screening test or a diagnosis. Your answers stay in this browser and are not uploaded or saved by this page.</div>
+
+  <section class="card" id="start">
+    <h2>Before you begin</h2>
+    <p>Think about how you have felt over the <strong>past 2 weeks</strong>. Choose the answer that best reflects your experience. This usually takes about 2–3 minutes.</p>
+    <div class="safety"><strong>Need urgent support now?</strong> If you may harm yourself or someone else, or cannot stay safe, contact local emergency services or go to the nearest emergency department. In India, call <strong>112</strong> for emergencies or <strong>Tele-MANAS 14416</strong> for mental health support.</div>
+    <div class="actions"><span class="small">10 reflection questions · No sign-in</span><button class="primary" id="begin">Begin check-in →</button></div>
+  </section>
+
+  <section class="card hidden" id="quiz" aria-live="polite">
+    <div class="row"><span class="pill">WELLNESS CHECK-IN</span><span class="small" id="counter">Question 1 of 10</span></div>
+    <div class="progress" aria-label="Assessment progress"><div class="bar" id="bar"></div></div>
+    <div class="question" id="qtext"></div>
+    <div class="answers" id="answers"></div>
+    <div class="actions"><button class="secondary" id="back">← Back</button><button class="primary" id="next" disabled>Next →</button></div>
+  </section>
+
+  <section class="card hidden" id="result" aria-live="polite">
+    <span class="pill">YOUR REFLECTION SUMMARY</span>
+    <h2 style="margin-top:12px">Thank you for checking in with yourself.</h2>
+    <div class="result-panel" id="summary"></div>
+    <h3>Small next steps</h3>
+    <ul id="steps"></ul>
+    <div class="safety"><strong>Remember:</strong> This result is not a diagnosis and cannot tell you whether you have a mental health condition. If distress is persistent, worsening, or affecting daily life, consider speaking with a qualified health professional.</div>
+    <div class="actions"><button class="secondary" id="restart">Start again</button><button class="primary" id="print">Print / Save as PDF</button></div>
+  </section>
+  <div class="footer">Made for wellness education · Privacy-first demo · Not a substitute for professional care</div>
+</div>
+<script>
+const questions = [
+  {q:"How often have you felt calm or emotionally settled?", opts:["Most or all of the time","Often","Sometimes","Rarely or never"], reverse:true},
+  {q:"How often have everyday tasks felt overwhelming?", opts:["Rarely or never","Sometimes","Often","Most or all of the time"]},
+  {q:"How often have you had trouble falling asleep, staying asleep, or getting restful sleep?", opts:["Rarely or never","Sometimes","Often","Most or all of the time"]},
+  {q:"How often have you felt low, down, or less hopeful than usual?", opts:["Rarely or never","Sometimes","Often","Most or all of the time"]},
+  {q:"How often have you found it difficult to focus on what you were doing?", opts:["Rarely or never","Sometimes","Often","Most or all of the time"]},
+  {q:"How often have you felt tense, worried, or unable to switch off your thoughts?", opts:["Rarely or never","Sometimes","Often","Most or all of the time"]},
+  {q:"How often have you felt connected to or supported by someone you trust?", opts:["Most or all of the time","Often","Sometimes","Rarely or never"], reverse:true},
+  {q:"How often have you had enough energy for your usual daily activities?", opts:["Most or all of the time","Often","Sometimes","Rarely or never"], reverse:true},
+  {q:"How often have stress or emotions affected your studies, work, relationships, or routines?", opts:["Rarely or never","Sometimes","Often","Most or all of the time"]},
+  {q:"How often have you made time for something that helps you feel restored, such as movement, a hobby, nature, or talking with someone?", opts:["Most or all of the time","Often","Sometimes","Rarely or never"], reverse:true}
+];
+const start=document.getElementById('start'), quiz=document.getElementById('quiz'), result=document.getElementById('result');
+let index=0, responses=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
+function render(){
+  const item=questions[index]; $('counter').textContent=`Question ${index+1} of ${questions.length}`;
+  $('bar').style.width=`${(index/questions.length)*100}%`; $('qtext').textContent=item.q;
+  $('answers').innerHTML='';
+  item.opts.forEach((label,i)=>{
+    const b=document.createElement('button'); b.type='button'; b.className='answer'+(responses[index]===i?' selected':'');
+    b.setAttribute('aria-pressed',responses[index]===i?'true':'false');
+    const dot=document.createElement('span'); dot.className='dot'; dot.setAttribute('aria-hidden','true');
+    const txt=document.createElement('span'); txt.textContent=label; b.append(dot,txt);
+    b.addEventListener('click',()=>{responses[index]=i;render();}); $('answers').appendChild(b);
+  });
+  $('back').disabled=index===0; $('back').style.opacity=index===0?'.45':'1';
+  $('next').disabled=responses[index]===null; $('next').textContent=index===questions.length-1?'See my reflection →':'Next →';
+}
+$('begin').addEventListener('click',()=>{start.classList.add('hidden');quiz.classList.remove('hidden');render();window.scrollTo({top:0,behavior:'smooth'});});
+$('back').addEventListener('click',()=>{if(index>0){index--;render();}});
+$('next').addEventListener('click',()=>{
+ if(responses[index]===null)return;
+ if(index<questions.length-1){index++;render();}else showResult();
+});
+function showResult(){
+ const score=questions.reduce((sum,item,i)=>sum+(item.reverse?3-responses[i]:responses[i]),0);
+ // This is a custom reflection score only, not a validated clinical scale.
+ let title,description,cls,steps;
+ if(score<=7){
+  title="Your answers suggest relatively positive day-to-day well-being.";
+  description="You reported fewer of the challenges covered in this check-in. Keep nurturing the habits and connections that support you.";cls='';
+  steps=["Keep a steady sleep and wake routine where possible.","Make time for activities and people that help you feel restored.","Check in with yourself again if your circumstances change."];
+ }else if(score<=16){
+  title="You may be experiencing some strain.";
+  description="Some areas may deserve a little extra care. Consider which answers felt most relevant and choose one manageable step.";cls='amber';
+  steps=["Try a short daily reset: slow breathing, a brief walk, or a quiet break.","Protect a regular wind-down routine before sleep.","Consider talking with someone you trust about what has felt difficult."];
+ }else if(score<=23){
+  title="Your answers suggest several areas may need attention.";
+  description="You may be carrying a meaningful amount of stress or emotional strain. You do not have to handle it alone.";cls='amber';
+  steps=["Reach out to someone you trust and explain how you have been feeling.","Reduce one avoidable demand and plan a realistic rest break.","Consider speaking with a qualified counsellor or health professional, especially if this is affecting daily life."];
+ }else{
+  title="Your answers suggest you may be having a difficult time.";
+  description="Please take your well-being seriously and consider reaching out for support soon. This score is not a diagnosis.";cls='rose';
+  steps=["Contact a trusted person today and let them know you could use support.","Consider arranging an appointment with a qualified mental health professional or healthcare provider.","If you feel unsafe or may harm yourself, seek urgent help now: call 112 in India or go to the nearest emergency department. Tele-MANAS: 14416."];
+ }
+ $('summary').className='result-panel '+cls;
+ $('summary').innerHTML=`<div class="small">Custom reflection score · ${score} out of 30</div><div class="result-score">${score}<span style="font-size:1rem;color:#60767b;font-weight:600"> / 30</span></div><h3>${title}</h3><p>${description}</p><p class="small">This score is generated from an original, non-validated set of reflection questions. It must not be interpreted as a clinical severity level.</p>`;
+ $('steps').innerHTML='';steps.forEach(s=>{const li=document.createElement('li');li.textContent=s;$('steps').appendChild(li);});
+ $('bar').style.width='100%';quiz.classList.add('hidden');result.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});
+}
+$('restart').addEventListener('click',()=>{index=0;responses=Array(questions.length).fill(null);result.classList.add('hidden');start.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});});
+$('print').addEventListener('click',()=>window.print());
+</script>
+</body>
+</html>
